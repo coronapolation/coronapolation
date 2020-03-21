@@ -17,6 +17,15 @@ def load_bundeslaender():
         data[row[0]] = row[1]
     return data
 
+def load_landkreise(bundesland_id):
+    conn = db_conn()
+    cur = conn.cursor()
+    rows = cur.execute(f'SELECT DISTINCT IdLandkreis, Landkreis FROM RKI_COVID19 WHERE IdBundesland == \'{bundesland_id}\'').fetchall()
+    data = {}
+    for row in rows:
+        data[row[0]] = row[1]
+    return data
+
 def load_rki_data():
     conn = db_conn()
     cur = conn.cursor()

@@ -11,6 +11,10 @@ from bottle import route, run
 def bundeslaender():
     return storage.load_bundeslaender()
 
+@route('/landkreise/<id_bundesland>')
+def laender(id_bundesland):
+    return storage.load_landkreise(id_bundesland)
+
 @route('/rki-data-germany-sum')
 def index():
     pass
