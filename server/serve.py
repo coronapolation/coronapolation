@@ -19,7 +19,7 @@ def laender(id_bundesland):
 @route('/neuinfizierte/<id_landkreis>')
 def neuinfizierte(id_landkreis):
     since = datetime.datetime.strptime(request.query.since, '%Y-%m-%d') if len(request.query.since) > 0 else datetime.datetime.strptime('2020-01-01', '%Y-%m-%d')
-    until = datetime.datetime.strptime(request.query.until, '%Y-%m-%d') if len(request.query.until) > 0 else datetime.datetime.now().date()
+    until = datetime.datetime.strptime(request.query.until, '%Y-%m-%d') if len(request.query.until) > 0 else datetime.datetime.combine(datetime.datetime.now().date(), datetime.datetime.min.time())
     days = []
     while True:
         days.append([since.strftime('%Y-%m-%d'), 0])
@@ -36,7 +36,7 @@ def neuinfizierte(id_landkreis):
 def infizierte(id_landkreis):
     start = datetime.datetime.strptime('2020-01-01', '%Y-%m-%d')
     since = datetime.datetime.strptime(request.query.since, '%Y-%m-%d') if len(request.query.since) > 0 else datetime.datetime.strptime('2020-01-01', '%Y-%m-%d')
-    until = datetime.datetime.strptime(request.query.until, '%Y-%m-%d') if len(request.query.until) > 0 else datetime.datetime.now().date()
+    until = datetime.datetime.strptime(request.query.until, '%Y-%m-%d') if len(request.query.until) > 0 else datetime.datetime.combine(datetime.datetime.now().date(), datetime.datetime.min.time())
     days = []
     while True:
         days.append([start.strftime('%Y-%m-%d'), None])
