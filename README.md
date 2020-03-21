@@ -1,6 +1,6 @@
-Coronapolation
+# Coronapolation
 
-Idea: 
+## Idea
 The spread of the corona virus is picking up speed and we are facing a phase where single infection chains can not be traced anymore. 
 All across germany different messures are employed but so far the impact is unclear and hard to monitor. 
 
@@ -11,4 +11,4 @@ On this data basis we can deploy models with measures for stopping further sprea
 on the one hand with our system by looking into the past and we can start to extrapolate and give an idicator for the sensibility 
 for those measures.
 
-Implementation: 
+## Implementation
