@@ -1,5 +1,8 @@
 # Coronapolation
 
+## Communication Channel
+https://nextcloud.baremetal.rocks/call/zy7wdk9s
+
 ## Idea
 The spread of the corona virus is picking up speed and we are facing a phase where single infection chains can not be traced anymore. 
 All across germany different messures are employed but so far the impact is unclear and hard to monitor. 
