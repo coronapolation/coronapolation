@@ -73,3 +73,6 @@ fabric.properties
 # whole idea folder and project file
 coronapolation.iml
 .idea/
+
+.vscode/
+
