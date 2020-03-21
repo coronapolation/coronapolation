@@ -57,4 +57,4 @@ def infizierte(id_landkreis):
     days = list(filter(lambda l: datetime.datetime.strptime(l[0], '%Y-%m-%d') >= since, days))
     return {'days': days}
 
-run(host='0.0.0.0', port=8080)
+run(host='127.0.0.1', port=8080)
