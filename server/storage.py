@@ -15,6 +15,7 @@ def load_bundeslaender():
     data = {}
     for row in rows:
         data[row[0]] = row[1]
+    conn.close()
     return data
 
 def load_landkreise(bundesland_id):
@@ -24,12 +25,13 @@ def load_landkreise(bundesland_id):
     data = {}
     for row in rows:
         data[row[0]] = row[1]
+    conn.close()
     return data
 
-def load_rki_data():
+def load_landkreis_infections(landkreis_id):
     conn = db_conn()
     cur = conn.cursor()
-    rows = cur.execute('SELECT * FROM RKI_COVID19 WHERE IdBundesland != -1').fetchall()
+    rows = cur.execute(f'SELECT * FROM RKI_COVID19 WHERE IdLandkreis == \'{landkreis_id}\'').fetchall()
     rki_data = []
     for row in rows:
         rki_data.append({
@@ -46,3 +48,12 @@ def load_rki_data():
         })
     conn.close()
     return rki_data
+
+def load_infections_per_day_for_landkreis(id_landkreis):
+    infections_per_day = {}
+    for entry in load_landkreis_infections(id_landkreis):
+        datekey = entry['Meldedatum'].strftime('%Y-%m-%d')
+        if not datekey in infections_per_day:
+            infections_per_day[datekey] = 0
+        infections_per_day[datekey] += entry['AnzahlFall']
+    return infections_per_day
