@@ -14,9 +14,16 @@ python3 predict.py <sqlite_dataset>
 ````
 
 ## Basic Operations
-What is the count of infections per day, on a district-by-district basis, over the entire history of
+What is the count of cases per day, on a district-by-district basis, over the entire history of
 the dataset?
 ````
-by_district = dataset.groupby(["Landkreis", "Meldedatum"])["AnzahlFall"].count()
-print(by_district.tail(10))
+cases_by_district = dataset.groupby(["Landkreis", "Meldedatum"])["AnzahlFall"].count()
+print(cases_by_district.tail(10))
+````
+
+What is the count of deaths per day, on a district-by-district basis, over the entire history of
+the dataset?
+````
+deaths_by_district = dataset.groupby(["Landkreis", "Meldedatum"])["AnzahlTodesfall"].count()
+print(deaths_by_district.tail(10))
 ````
