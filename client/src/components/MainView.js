@@ -8,6 +8,7 @@ import CartesianGrid from "recharts/lib/cartesian/CartesianGrid";
 import Tooltip from "@material-ui/core/Tooltip";
 import Legend from "recharts/lib/component/Legend";
 import Line from "recharts/lib/cartesian/Line";
+import ResponsiveContainer from "recharts/lib/component/ResponsiveContainer"
 
 class MainView extends Component {
     render() {
@@ -15,16 +16,19 @@ class MainView extends Component {
             return (
                 <div>
                     {this.props.store.infizierte != null &&
-                    <Paper style={{padding: 10, margin: 20}}>
-                        <LineChart width={800} height={600} data={this.props.store.infizierte}
-                                   margin={{top: 50, right: 50, left: 50, bottom: 50}}>
-                            <XAxis dataKey="name"/>
-                            <YAxis/>
-                            <CartesianGrid strokeDasharray="5 3"/>
-                            <Tooltip/>
-                            <Legend/>
-                            <Line type="monotone" dataKey={this.props.store.selected_landkreis_id} stroke="#46467d"/>
-                        </LineChart>
+                    <Paper style={{margin: 20, padding: 10}}>
+                        <p>Fallzahlen in <span>{this.props.store.selectedBundesland}</span> im <span>{this.props.store.selectedLandkreis}</span></p>
+                        <ResponsiveContainer width="100%" height={500}>
+                            <LineChart data={this.props.store.infizierte}
+                                   margin={{top: 20, right: 20, left: 30, bottom: 20}}>
+                                <XAxis dataKey="name"/>
+                                <YAxis/>
+                                <CartesianGrid strokeDasharray="5 3"/>
+                                <Tooltip/>
+                                <Legend/>
+                                <Line type="monotone" dataKey={this.props.store.selected_landkreis_id} stroke="#46467d"/>
+                            </LineChart>
+                        </ResponsiveContainer>
                     </Paper>
                     }
                 </div>
