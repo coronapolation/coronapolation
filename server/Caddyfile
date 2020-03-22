@@ -1,5 +1,6 @@
 coronapolation.baremetal.rocks {
-    proxy / localhost:8080 {
+    root /root/client
+    proxy /api localhost:8080 {
         transparent
         header_downstream Access-Control-Allow-Origin "*"
     }
