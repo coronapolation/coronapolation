@@ -37,20 +37,47 @@ const Actions = {
     loadInfizierte: (store, landkreis_id) => {
         return API.infizierte(store.endpoint, landkreis_id).then( listdata => {
             let data = [];
+            let landkreis_name = store.landkreise.filter(l => l.id === landkreis_id)[0].name;
             listdata.days.forEach(elem => {
                 let listitem = {'name': elem[0]};
-                listitem[landkreis_id] = elem[1];
+                listitem[landkreis_name + ' SUMME'] = elem[1];
                 data.push(listitem)
             });
             store.infizierte = data;
             store.selected_landkreis_id = landkreis_id;
+            store.selected_landkreis_name = landkreis_name;
             store.notify();
         });
     },
-    resetInfizierte: (store) => {
-        store.infizierte = null;
+    loadNeuinfizierte: (store, landkreis_id) => {
+        return API.neuinfizierte(store.endpoint, landkreis_id).then( listdata => {
+            let data = [];
+            let landkreis_name = store.landkreise.filter(l => l.id === landkreis_id)[0].name;
+            listdata.days.forEach(elem => {
+                let listitem = {'name': elem[0]};
+                listitem[landkreis_name + ' NEU'] = elem[1];
+                data.push(listitem)
+            });
+            store.neuinfizierte = data;
+            store.selected_landkreis_id = landkreis_id;
+            store.selected_landkreis_name = landkreis_name;
+            store.notify();
+        });
+    },
+    prepareGraphData: (store) => {
+        store.graphData = [];
+        for(let i in store.infizierte) {
+            let neuinfizierte = store.neuinfizierte.filter(n => n.name === store.infizierte[i].name)[0];
+            const elem = {...store.infizierte[i], ...neuinfizierte};
+            store.graphData.push(elem);
+        }
         store.notify();
     },
+    resetInfizierte: (store) => {
+        store.infizierte = null;
+        store.neuinfizierte = null;
+        store.notify();
+    }
 };
 
 const API = {
@@ -80,7 +107,12 @@ const API = {
         });
     },
     infizierte: (endpoint, landkreis_id) => {
-        return API.fetchJSON(endpoint + "/infizierte/" + landkreis_id, {}, "unable to load infizierte").then( body => {
+        return API.fetchJSON(endpoint + "/infizierte/" + landkreis_id + "?since=2020-02-20", {}, "unable to load infizierte").then( body => {
+            return body;
+        });
+    },
+    neuinfizierte: (endpoint, landkreis_id) => {
+        return API.fetchJSON(endpoint + "/neuinfizierte/" + landkreis_id + "?since=2020-02-20", {}, "unable to load neuinfizierte").then( body => {
             return body;
         });
     }
