@@ -4,6 +4,7 @@ import Store from './store';
 
 import TopBar from './components/TopBar';
 import MainView from "./components/MainView";
+import Actions from "./actions";
 
 class App extends Component {
     constructor(props) {
@@ -19,10 +20,14 @@ class App extends Component {
         });
     }
 
+    componentDidMount() {
+        Actions.loadBundeslaender(this.state.store);
+    }
+
     render() {
         return (
             <div style={{width: '100%', minHeight: '100%', display: 'flex'}}>
-                <TopBar/>
+                <TopBar store={this.state.store}/>
                 <div style={{width: '100%', marginTop: 84, marginBottom: 20}}>
                     <MainView store={this.state.store}/>
                 </div>

@@ -29,6 +29,11 @@ const Actions = {
             store.notify();
         });
     },
+    resetLandkreise: (store) => {
+        store.landkreise = null;
+        store.infizierte = null;
+        store.notify();
+    },
     loadInfizierte: (store, landkreis_id) => {
         return API.infizierte(store.endpoint, landkreis_id).then( listdata => {
             let data = [];
@@ -41,7 +46,11 @@ const Actions = {
             store.selected_landkreis_id = landkreis_id;
             store.notify();
         });
-    }
+    },
+    resetInfizierte: (store) => {
+        store.infizierte = null;
+        store.notify();
+    },
 };
 
 const API = {
