@@ -15,11 +15,13 @@ const selectStyle = {
 
 class TopBar extends Component {
     changedBundesland = event => {
-        Actions.loadLandkreise(this.props.store, event.target.value);
+        if(event.target.value) Actions.loadLandkreise(this.props.store, event.target.value);
+        Actions.resetLandkreise(this.props.store)
     };
 
     changedLandkreis = event => {
-        Actions.loadInfizierte(this.props.store, event.target.value);
+        if(event.target.value) Actions.loadInfizierte(this.props.store, event.target.value);
+        else Actions.resetInfizierte(this.props.store);
     };
 
     render() {

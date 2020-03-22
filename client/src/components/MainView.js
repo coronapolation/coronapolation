@@ -20,7 +20,7 @@ class MainView extends Component {
                                    margin={{top: 50, right: 50, left: 50, bottom: 50}}>
                             <XAxis dataKey="name"/>
                             <YAxis/>
-                            <CartesianGrid strokeDasharray="3 3"/>
+                            <CartesianGrid strokeDasharray="5 3"/>
                             <Tooltip/>
                             <Legend/>
                             <Line type="monotone" dataKey={this.props.store.selected_landkreis_id} stroke="#46467d"/>
