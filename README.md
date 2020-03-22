@@ -1,7 +1,7 @@
 # Coronapolation
 
-## Communication Channel
-https://nextcloud.baremetal.rocks/call/zy7wdk9s
+## Demo
+https://coronapolation.baremetal.rocks/
 
 ## Idea
 The spread of the corona virus is picking up speed and we are facing a phase where single infection chains can not be traced anymore. 
