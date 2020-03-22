@@ -8,15 +8,15 @@ import datetime
 
 from bottle import route, run, request
 
-@route('/bundeslaender')
+@route('/api/bundeslaender')
 def bundeslaender():
     return storage.load_bundeslaender()
 
-@route('/landkreise/<id_bundesland>')
+@route('/api/landkreise/<id_bundesland>')
 def laender(id_bundesland):
     return storage.load_landkreise(id_bundesland)
 
-@route('/neuinfizierte/<id_landkreis>')
+@route('/api/neuinfizierte/<id_landkreis>')
 def neuinfizierte(id_landkreis):
     since = datetime.datetime.strptime(request.query.since, '%Y-%m-%d') if len(request.query.since) > 0 else datetime.datetime.strptime('2020-01-01', '%Y-%m-%d')
     until = datetime.datetime.strptime(request.query.until, '%Y-%m-%d') if len(request.query.until) > 0 else datetime.datetime.combine(datetime.datetime.now().date(), datetime.datetime.min.time())
@@ -32,7 +32,7 @@ def neuinfizierte(id_landkreis):
             days[i][1] = infections_per_day[days[i][0]]
     return {'days': days}
 
-@route('/infizierte/<id_landkreis>')
+@route('/api/infizierte/<id_landkreis>')
 def infizierte(id_landkreis):
     start = datetime.datetime.strptime('2020-01-01', '%Y-%m-%d')
     since = datetime.datetime.strptime(request.query.since, '%Y-%m-%d') if len(request.query.since) > 0 else datetime.datetime.strptime('2020-01-01', '%Y-%m-%d')
@@ -57,7 +57,7 @@ def infizierte(id_landkreis):
     days = list(filter(lambda l: datetime.datetime.strptime(l[0], '%Y-%m-%d') >= since, days))
     return {'days': days}
 
-@route('/neuinfizierte_bundesland/<id_bundesland>')
+@route('/api/neuinfizierte_bundesland/<id_bundesland>')
 def neuinfizierte_bundesland(id_bundesland):
     since = datetime.datetime.strptime(request.query.since, '%Y-%m-%d') if len(request.query.since) > 0 else datetime.datetime.strptime('2020-01-01', '%Y-%m-%d')
     until = datetime.datetime.strptime(request.query.until, '%Y-%m-%d') if len(request.query.until) > 0 else datetime.datetime.combine(datetime.datetime.now().date(), datetime.datetime.min.time())
@@ -73,7 +73,7 @@ def neuinfizierte_bundesland(id_bundesland):
             days[i][1] = infections_per_day[days[i][0]]
     return {'days': days}
 
-@route('/infizierte_bundesland/<id_bundesland>')
+@route('/api/infizierte_bundesland/<id_bundesland>')
 def infizierte_bundesland(id_bundesland):
     start = datetime.datetime.strptime('2020-01-01', '%Y-%m-%d')
     since = datetime.datetime.strptime(request.query.since, '%Y-%m-%d') if len(request.query.since) > 0 else datetime.datetime.strptime('2020-01-01', '%Y-%m-%d')
