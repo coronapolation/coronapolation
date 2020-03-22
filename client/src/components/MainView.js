@@ -18,7 +18,7 @@ class MainView extends Component {
                 <div>
                     {this.props.store.infizierte != null && this.props.store.neuinfizierte != null && this.props.store.graphData != null &&
                     <Paper style={{padding: 10, margin: 20}}>
-                        <p>Fallzahlen in <span>{this.props.store.selectedBundesland}</span> im <span>{this.props.store.selectedLandkreis}</span></p>
+                        <p>Fallzahlen in <span>{this.props.store.selected_bundesland}</span> im <span>{this.props.store.selected_landkreis_name}</span></p>
                         <ResponsiveContainer width="100%" height={500}>
                             <ComposedChart data={this.props.store.graphData}
                                    margin={{top: 50, right: 50, left: 50, bottom: 50}}>

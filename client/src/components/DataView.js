@@ -30,7 +30,7 @@ class DataView extends Component {
                 <div>
                     {this.props.store.infizierte != null &&
                     <Paper style={{padding: 10, margin: 20}}>
-                        <p>Possible scenarios for <span>{this.props.store.selectedLandkreis}</span></p>
+                        <p>Possible scenarios for <span>{this.props.store.selected_landkreis_name}</span></p>
                         <TableContainer component={Paper}>
                             <Table aria-label="simple table">
                                 <TableHead>

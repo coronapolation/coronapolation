@@ -18,7 +18,7 @@ class TopBar extends Component {
         if (event.target.value) Actions.loadLandkreise(this.props.store, event.target.value);
         Actions.resetLandkreise(this.props.store);
         let selectedBundesland = this.props.store.bundeslaender.find(x => x.id === event.target.value).name;
-        this.props.store.selectedBundesland = selectedBundesland;
+        this.props.store.selected_bundesland = selectedBundesland;
     };
 
     changedLandkreis = event => {
