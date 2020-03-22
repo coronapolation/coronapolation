@@ -1,6 +1,6 @@
 const Store = () => {
     return {
-        endpoint: "https://coronapolation.baremetal.rocks",
+        endpoint: "https://coronapolation.baremetal.rocks/api",
         subscribers: [],
         subscribe: function (s) {
             this.subscribers.push(s);
