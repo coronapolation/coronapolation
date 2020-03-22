@@ -107,12 +107,12 @@ const API = {
         });
     },
     infizierte: (endpoint, landkreis_id) => {
-        return API.fetchJSON(endpoint + "/infizierte/" + landkreis_id, {}, "unable to load infizierte").then( body => {
+        return API.fetchJSON(endpoint + "/infizierte/" + landkreis_id + "?since=2020-02-20", {}, "unable to load infizierte").then( body => {
             return body;
         });
     },
     neuinfizierte: (endpoint, landkreis_id) => {
-        return API.fetchJSON(endpoint + "/neuinfizierte/" + landkreis_id, {}, "unable to load neuinfizierte").then( body => {
+        return API.fetchJSON(endpoint + "/neuinfizierte/" + landkreis_id + "?since=2020-02-20", {}, "unable to load neuinfizierte").then( body => {
             return body;
         });
     }
